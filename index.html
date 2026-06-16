@@ -836,7 +836,7 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
   <div class="wrap">
     <div class="leadform-inner reveal">
       <span class="eyebrow">רוצים לשמוע עוד?</span>
-      <h2>השאירו פרטים <span class="grad-text">ונחזור אליכם</span></h2>
+      <h2>רוצים לשמוע עוד? <span class="grad-text">השאירו פרטים</span></h2>
       <p class="lead">מלאו שם ומספר טלפון — ירדן יחזור אליכם בוואטסאפ.</p>
       <div class="lf-fields">
         <div class="lf-field">
@@ -946,6 +946,14 @@ document.addEventListener('click',e=>{
 // initial page from hash
 const start=(location.hash.replace('#','')==='workshops')?'workshops':'digital';
 switchPage(start,false);
+
+// observe reveals outside page system (lead form, etc.)
+document.querySelectorAll('.reveal').forEach(el=>{
+  if(!el.closest('main.page')){
+    if(inView(el))el.classList.add('in');
+    else io.observe(el);
+  }
+});
 
 // lead form → WhatsApp
 document.getElementById('lf-submit').addEventListener('click',function(){
