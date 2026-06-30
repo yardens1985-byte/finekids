@@ -2,142 +2,43 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>דוח Dogfood — FineKids App</title>
+<title>Claude Response</title>
 <style>
   body {
     font-family: Arial, sans-serif;
-    max-width: 860px;
+    max-width: 800px;
     margin: 40px auto;
     padding: 0 20px;
     line-height: 1.8;
-    font-size: 17px;
+    font-size: 18px;
     color: #000;
     background: #fff;
   }
-  h1 { font-size: 26px; border-bottom: 3px solid #000; padding-bottom: 8px; }
-  h2 { font-size: 20px; margin-top: 36px; }
-  h3 { font-size: 17px; margin-top: 0; }
   code {
     direction: ltr;
     unicode-bidi: embed;
     background: #f0f0f0;
     padding: 2px 6px;
     border-radius: 3px;
-    font-size: 15px;
+    font-size: 16px;
   }
-  .badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-  .high   { background: #fde8e8; color: #b91c1c; border: 1px solid #f87171; }
-  .medium { background: #fef3c7; color: #92400e; border: 1px solid #fbbf24; }
-  .low    { background: #e0f2fe; color: #0369a1; border: 1px solid #38bdf8; }
-  .good   { background: #dcfce7; color: #15803d; border: 1px solid #4ade80; }
-  .issue-block {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-top: 20px;
-    background: #fafafa;
-  }
-  .summary-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-  .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 8px 12px; text-align: right; }
-  .summary-table th { background: #f4f4f4; }
-  .good-list li { margin-bottom: 6px; }
+  ul { padding-right: 20px; }
+  li { margin-bottom: 8px; }
 </style>
 </head>
 <body>
 
-<h1>🦊 דוח Dogfood — FineKids App</h1>
-<p>
-  <strong>כתובת:</strong> <code>https://finekidsapp.vercel.app/home</code><br>
-  <strong>תאריך:</strong> 17 ביוני 2026<br>
-  <strong>כלי:</strong> <code>agent-browser</code> עם Chrome headless<br>
-  <strong>סה"כ ממצאים:</strong> 4 בעיות — 2 גבוהות, 2 בינוניות
-</p>
+<h2>✅ השינויים הוחלו ועלו ל-GitHub</h2>
 
-<table class="summary-table">
-  <tr><th>חומרה</th><th>כמות</th></tr>
-  <tr><td><span class="badge high">גבוהה</span></td><td>2</td></tr>
-  <tr><td><span class="badge medium">בינונית</span></td><td>2</td></tr>
-</table>
-
-<hr>
-
-<h2>🐛 בעיות שנמצאו</h2>
-
-<div class="issue-block">
-  <h3>ISSUE-001 <span class="badge medium">בינונית</span> — אין פידבק בלחיצה על פרק נעול</h3>
-  <p><strong>עמוד:</strong> <code>/home</code> — מפת הפרקים</p>
-  <p><strong>תיאור:</strong> לחיצה על פרק נעול (🔒) לא מייצרת שום תגובה ויזואלית — אין toast, אין מודל, אין אנימציה. הילד לוחץ ונשאר בתחושה שהאפליקציה שבורה.</p>
-  <p><strong>שלבי שחזור:</strong></p>
-  <ol>
-    <li>פתח אפליקציה עם משתמש חדש</li>
-    <li>לחץ על "🔒 איך מרוויחים כסף?" או כל פרק נעול אחר</li>
-    <li>לא קורה כלום — אין הודעה, אין אנימציה</li>
-  </ol>
-  <p><strong>הצעת תיקון:</strong> הצג toast קצר כמו <em>"סיים את הפרק הקודם כדי לפתוח!"</em>, או אנימציית "ניעור" על הכפתור הנעול.</p>
-</div>
-
-<div class="issue-block">
-  <h3>ISSUE-002 <span class="badge medium">בינונית</span> — אין פידבק בלחיצה על "חסרים X 🪙" בחנות</h3>
-  <p><strong>עמוד:</strong> <code>/shop</code></p>
-  <p><strong>תיאור:</strong> כשאין מספיק מטבעות, לחיצה על כפתור הרכישה לא עושה כלום. הילד לא מבין מה קרה ולא מקבל כיוון כיצד להרוויח מטבעות.</p>
-  <p><strong>שלבי שחזור:</strong></p>
-  <ol>
-    <li>פתח את החנות עם 0 מטבעות</li>
-    <li>לחץ על "חסרים 15 🪙" (הפריט הזול ביותר)</li>
-    <li>לא קורה כלום</li>
-  </ol>
-  <p><strong>הצעת תיקון:</strong> הצג הודעה: <em>"חסרים לך X מטבעות — למד פרק חדש כדי להרוויח!"</em> עם כפתור ניווט לפרקים.</p>
-</div>
-
-<div class="issue-block">
-  <h3>ISSUE-003 <span class="badge high">גבוהה</span> — פרקים נעולים נגישים ישירות דרך URL</h3>
-  <p><strong>עמוד:</strong> <code>/chapter/2</code> (ובכל מספר אחר)</p>
-  <p><strong>תיאור:</strong> ניווט ישיר לכתובת URL של פרק נעול פותח את הפרק במלואו — הסרטון נגיש, אפשר לצפות ולהתקדם, ללא שום בדיקה שהפרק הקודם הושלם. זה מבטל לחלוטין את מנגנון ה-progression ואת ה-gamification.</p>
-  <p><strong>שלבי שחזור:</strong></p>
-  <ol>
-    <li>פתח משתמש חדש — רק פרק 1 אמור להיות פתוח</li>
-    <li>הקלד בדפדפן: <code>https://finekidsapp.vercel.app/chapter/2</code></li>
-    <li>הפרק נפתח מיידית — אין הפניה, אין הודעת שגיאה</li>
-  </ol>
-  <p><strong>הצעת תיקון:</strong> בקומפוננטת הפרק, בדוק ב-<code>useEffect</code> אם הפרק פתוח לפי ה-state — אם לא, הפנה ל-<code>/home</code> עם הסבר.</p>
-</div>
-
-<div class="issue-block">
-  <h3>ISSUE-004 <span class="badge high">גבוהה</span> — דף לבן ריק על route לא קיים</h3>
-  <p><strong>עמוד:</strong> כל כתובת לא קיימת, למשל <code>/nonexistent-page</code></p>
-  <p><strong>תיאור:</strong> ניווט לכתובת שאינה קיימת מציג דף לבן לחלוטין — אין הודעת שגיאה, אין כפתור חזרה, אין תוכן. המשתמש תקוע ללא יכולת להמשיך.</p>
-  <p><strong>שלבי שחזור:</strong></p>
-  <ol>
-    <li>גלוש ל: <code>https://finekidsapp.vercel.app/nonexistent-page</code></li>
-    <li>מוצג דף לבן ריק לחלוטין</li>
-  </ol>
-  <p><strong>הצעת תיקון:</strong> הוסף קובץ <code>app/not-found.tsx</code> (Next.js App Router) עם הודעה ידידותית לילדים וכפתור "חזרה לדף הבית".</p>
-</div>
-
-<hr>
-
-<h2>✅ מה עובד טוב</h2>
-<ul class="good-list">
-  <li><span class="badge good">טוב</span> <strong>עמוד הנחיתה</strong> — עיצוב מושך ומותאם לילדים. הכפתור מושבת נכון כשהשם ריק.</li>
-  <li><span class="badge good">טוב</span> <strong>מפת הפרקים</strong> — UX של trail map עם מסלול מקווקו, דמות Fox ועמדות נעולות. מרגיש כמו משחק אמיתי.</li>
-  <li><span class="badge good">טוב</span> <strong>עמוד פרק</strong> — סרטון YouTube מוטמע, מד התקדמות ב-0%, מנגנון "צפה עד הסוף" עם תגמול מוצג בבירור (מטבעות + תג).</li>
-  <li><span class="badge good">טוב</span> <strong>חנות</strong> — 3 קטגוריות עם items ותמחור ברור. מעבר בין טאבים עובד מצוין.</li>
-  <li><span class="badge good">טוב</span> <strong>קיצור מטבעות</strong> — לחיצה על "🪙 0" בכותרת מנווטת לחנות ישירות. אינטואיטיבי.</li>
-  <li><span class="badge good">טוב</span> <strong>מובייל-first</strong> — האפליקציה נראית מצוין ב-390×844px. ברור שתוכננה עבור מסכי טלפון.</li>
-  <li><span class="badge good">טוב</span> <strong>אפס שגיאות קונסול</strong> — לא נמצאו שגיאות JavaScript או network בשום עמוד.</li>
-  <li><span class="badge good">טוב</span> <strong>זיכרון session</strong> — חזרה ל-<code>/welcome</code> עם שם קיים מפנה ל-<code>/home</code> אוטומטית.</li>
+<ul>
+  <li><strong>קו הפרדה</strong> — נוסף מעל הבאנר: <code>— ⬇ מוצר אחר ⬇ —</code> עם קווים משני הצדדים בצבע <code>var(--ink-3)</code>.</li>
+  <li><strong>רקע הבאנר</strong> — שונה מ-<code>var(--grad)</code> (כחול-פוקסיה) ל-gradient כהה: <code>var(--ink)</code> → <code>var(--blue-d)</code>. ה-padding הוגדל מ-<code>28px 34px</code> ל-<code>40px 44px</code>.</li>
+  <li><strong>Badge "מוצר נפרד לקהילות"</strong> — נוסף מעל הכותרת, ברקע <code>var(--fuchsia)</code>, פונט 11px, <code>border-radius: 20px</code>.</li>
+  <li><strong>כותרת הבאנר</strong> — שונה ל: <em>פיינקידס מגיע אליכם — סדנאות פרונטליות לקהילות ומוסדות</em>.</li>
+  <li><strong>כפתור חזרה בעמוד הסדנאות</strong> — שונה ל: <em>← חזרה לתוכנית הדיגיטלית להורים</em>.</li>
 </ul>
 
-<hr>
-<p style="font-size:14px; color:#666;">דוח נוצר על ידי agent-browser dogfood · 17.6.2026</p>
+<p>ה-commit עלה: <code>clarify digital vs workshops separation</code></p>
 
 </body>
 </html>
