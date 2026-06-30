@@ -456,10 +456,6 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
       <span class="spark s1">✦</span>
       <span class="spark s2">✦</span>
       <span class="spark s3">★</span>
-      <div class="mini-graph">
-        <div class="mg-top"><b>חיסכון</b><span class="mg-up">▲ +18%</span></div>
-        <div class="bars"><i></i><i></i><i></i><i></i><i></i></div>
-      </div>
     </div>
   </div>
 </section>
@@ -833,11 +829,11 @@ document.getElementById('reg-form').addEventListener('submit', async function(e)
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        workshop_id: selectedWorkshop.id,
-        child_name: document.getElementById('rf-child').value,
-        child_age: parseInt(document.getElementById('rf-age').value),
-        parent_name: document.getElementById('rf-parent').value,
-        parent_phone: document.getElementById('rf-phone').value,
+        workshopId: selectedWorkshop.id,
+        childName: document.getElementById('rf-child').value,
+        childAge: parseInt(document.getElementById('rf-age').value),
+        parentName: document.getElementById('rf-parent').value,
+        parentPhone: document.getElementById('rf-phone').value,
       })
     });
     if (!res.ok) throw new Error();
