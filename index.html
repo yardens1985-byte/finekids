@@ -70,6 +70,8 @@ h3{font-size:clamp(20px,2.4vw,26px);font-weight:700}
 .btn-blue:hover{background:var(--blue-d);transform:translateY(-3px)}
 .btn-ghost{background:#fff;color:var(--ink);box-shadow:0 4px 14px rgba(0,0,0,.06);border:1.5px solid var(--line)}
 .btn-ghost:hover{transform:translateY(-3px);border-color:var(--blue);color:var(--blue)}
+.btn-register{background:var(--fuchsia);color:#fff;box-shadow:0 12px 32px rgba(236,0,140,.3)}
+.btn-register:hover{background:var(--fuchsia-d);transform:translateY(-3px);box-shadow:0 18px 40px rgba(236,0,140,.38)}
 .btn-lg{font-size:20px;padding:20px 42px}
 
 /* ---------- header ---------- */
@@ -420,6 +422,7 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.06c-.25.69-1.45 1.32-1.99 1.36-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.12-4.88-4.31-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.25-.29.55-.36.73-.36.18 0 .37 0 .53.01.17.01.4-.07.62.47.25.61.85 2.11.92 2.26.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.31 2.35 1.46.29.15.46.12.62-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.62-.14.25.09 1.55.73 1.81.86.27.13.45.2.51.31.07.11.07.64-.18 1.33Z"/></svg>
           דברו איתנו בוואטסאפ
         </a>
+        <a class="btn btn-register btn-lg" href="#register">✏️ הירשמו לסדנה</a>
         <a class="btn btn-ghost btn-lg" href="#how">איך זה עובד?</a>
       </div>
       <div class="price-block reveal">
@@ -660,6 +663,9 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.06c-.25.69-1.45 1.32-1.99 1.36-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.12-4.88-4.31-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.25-.29.55-.36.73-.36.18 0 .37 0 .53.01.17.01.4-.07.62.47.25.61.85 2.11.92 2.26.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.31 2.35 1.46.29.15.46.12.62-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.62-.14.25.09 1.55.73 1.81.86.27.13.45.2.51.31.07.11.07.64-.18 1.33Z"/></svg>
         לתפוס מקום עכשיו
       </a>
+      <a class="btn btn-register btn-lg reveal" href="#register" style="margin-top:14px">
+        ✏️ הירשמו ובחרו מועד
+      </a>
       <div class="price-block reveal" style="margin-top:24px">
         <span class="price-full">450 ₪</span>
         <span class="price-sale">297 ₪</span>
@@ -676,6 +682,193 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
   </div>
 </section>
 
+<!-- ============ REGISTER ============ -->
+<section class="section" id="register" style="background:var(--sky-2)">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">📅 הרשמה לסדנה</span>
+      <h2 style="margin-top:14px">בחרו מועד <span class="grad-text">שמתאים לכם</span></h2>
+      <p class="lead">5 מפגשים שבועיים · 30 דקות כל מפגש · עד 4 ילדים בקבוצה</p>
+    </div>
+
+    <!-- שלב 1: בחירת מועד -->
+    <div id="reg-step1">
+      <div id="slots-container" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px">
+        <div style="text-align:center;padding:48px;color:var(--ink-3);grid-column:1/-1">
+          <div style="font-size:2rem;margin-bottom:12px">⏳</div>
+          <p>טוען מועדים...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- שלב 2: טופס -->
+    <div id="reg-step2" style="display:none;max-width:520px;margin:0 auto">
+      <div id="selected-slot-display" style="background:#fff;border:2px solid var(--blue);border-radius:16px;padding:16px 20px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-weight:700;color:var(--ink)" id="selected-slot-text"></div>
+          <div style="font-size:14px;color:var(--ink-3)" id="selected-slot-dates"></div>
+        </div>
+        <button onclick="backToSlots()" style="background:none;border:none;color:var(--ink-3);cursor:pointer;font-size:14px;text-decoration:underline">שנה</button>
+      </div>
+      <form id="reg-form" style="background:#fff;border-radius:20px;padding:28px;box-shadow:0 4px 24px rgba(0,138,200,.08)">
+        <div style="display:grid;gap:14px">
+          <div>
+            <label style="display:block;font-weight:600;font-size:14px;margin-bottom:6px;color:var(--ink)">שם הילד/ה *</label>
+            <input type="text" id="rf-child" placeholder="שם פרטי ומשפחה" required style="width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px;outline:none;transition:.2s" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--line)'">
+          </div>
+          <div>
+            <label style="display:block;font-weight:600;font-size:14px;margin-bottom:6px;color:var(--ink)">גיל הילד/ה *</label>
+            <select id="rf-age" required style="width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px;outline:none;background:#fff;cursor:pointer">
+              <option value="">בחרו גיל</option>
+              <option>7</option><option>8</option><option>9</option>
+              <option>10</option><option>11</option><option>12</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block;font-weight:600;font-size:14px;margin-bottom:6px;color:var(--ink)">שם ההורה *</label>
+            <input type="text" id="rf-parent" placeholder="שם מלא" required style="width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px;outline:none;transition:.2s" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--line)'">
+          </div>
+          <div>
+            <label style="display:block;font-weight:600;font-size:14px;margin-bottom:6px;color:var(--ink)">מספר טלפון *</label>
+            <input type="tel" id="rf-phone" placeholder="05X-XXXXXXX" required style="width:100%;padding:12px 16px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:16px;outline:none;transition:.2s;direction:ltr;text-align:right" onfocus="this.style.borderColor='var(--blue)'" onblur="this.style.borderColor='var(--line)'">
+          </div>
+        </div>
+        <button type="submit" id="rf-submit" class="btn btn-register btn-lg" style="width:100%;margin-top:20px;justify-content:center">
+          שלחו רישום ←
+        </button>
+        <p id="rf-error" style="display:none;color:#e53e3e;font-size:14px;margin-top:10px;text-align:center"></p>
+      </form>
+    </div>
+
+    <!-- שלב 3: תודה + תשלום -->
+    <div id="reg-step3" style="display:none;max-width:480px;margin:0 auto;text-align:center">
+      <div style="font-size:4rem;margin-bottom:16px">🎉</div>
+      <h3 style="font-size:clamp(22px,3vw,30px);margin-bottom:12px">נרשמתם בהצלחה!</h3>
+      <p class="lead" style="margin-bottom:28px">כדי לאשר את מקומכם, אנא השלימו את התשלום:</p>
+      <a href="https://links.payboxapp.com/pULeHHE2n4b" target="_blank" rel="noopener" class="btn btn-register btn-lg" style="width:100%;justify-content:center;font-size:19px;padding:20px">
+        💳 לתשלום — 297 ₪
+      </a>
+      <p style="margin-top:16px;font-size:14px;color:var(--ink-3)">לאחר התשלום נשלח אליכם אישור 📲</p>
+    </div>
+  </div>
+</section>
+
+<style>
+.slot-card{
+  background:#fff;border:2px solid var(--line);border-radius:16px;
+  padding:20px;cursor:pointer;transition:all .2s;
+}
+.slot-card:hover{border-color:var(--blue);box-shadow:0 6px 20px rgba(0,174,239,.12);transform:translateY(-2px)}
+.slot-card.selected{border-color:var(--blue);background:rgba(0,174,239,.05);box-shadow:0 6px 20px rgba(0,174,239,.18)}
+.slot-day{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:4px}
+.slot-time{font-size:24px;font-weight:800;color:var(--blue);margin-bottom:10px}
+.slot-dates{font-size:13px;color:var(--ink-3);line-height:1.8}
+.slot-spots{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:13px;font-weight:600;color:var(--green);background:rgba(57,181,74,.1);padding:4px 12px;border-radius:50px}
+</style>
+
+<script>
+const PORTAL_API = 'https://hakhamim-portal.vercel.app';
+let selectedWorkshop = null;
+
+function getSessionDates(startDate) {
+  const dates = [];
+  const start = new Date(startDate);
+  for (let i = 0; i < 5; i++) {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i * 7);
+    dates.push(d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' }));
+  }
+  return dates;
+}
+
+async function loadSlots() {
+  try {
+    const res = await fetch(PORTAL_API + '/api/workshops');
+    const workshops = await res.json();
+    const container = document.getElementById('slots-container');
+
+    if (!workshops.length) {
+      container.innerHTML = `
+        <div style="text-align:center;padding:48px;color:var(--ink-3);grid-column:1/-1">
+          <div style="font-size:2.5rem;margin-bottom:12px">📅</div>
+          <p style="font-size:17px;font-weight:600;margin-bottom:8px">אין מועדים פנויים כרגע</p>
+          <p style="font-size:15px">שלחו לנו הודעה בוואטסאפ ונעדכן אתכם כשתיפתח קבוצה חדשה</p>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = workshops.map(w => {
+      const dates = getSessionDates(w.start_date);
+      const spots = w.max_capacity - w.current_count;
+      return `
+        <div class="slot-card" onclick="selectSlot(${JSON.stringify(w).replace(/"/g,'&quot;')}, this)">
+          <div class="slot-day">ימי ${w.day_of_week}</div>
+          <div class="slot-time">${w.time}</div>
+          <div class="slot-dates">📅 ${dates.join(' · ')}</div>
+          <div class="slot-spots">🟢 נותרו ${spots} מקומות</div>
+        </div>`;
+    }).join('');
+  } catch(e) {
+    document.getElementById('slots-container').innerHTML =
+      '<p style="text-align:center;color:var(--ink-3);grid-column:1/-1">שגיאה בטעינת המועדים, נסו שוב</p>';
+  }
+}
+
+function selectSlot(workshop, el) {
+  document.querySelectorAll('.slot-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedWorkshop = workshop;
+  const dates = getSessionDates(workshop.start_date);
+  document.getElementById('selected-slot-text').textContent = `ימי ${workshop.day_of_week} בשעה ${workshop.time}`;
+  document.getElementById('selected-slot-dates').textContent = '📅 ' + dates.join(' · ');
+  setTimeout(() => {
+    document.getElementById('reg-step1').style.display = 'none';
+    document.getElementById('reg-step2').style.display = 'block';
+    document.getElementById('reg-step2').scrollIntoView({ behavior:'smooth', block:'start' });
+  }, 300);
+}
+
+function backToSlots() {
+  document.getElementById('reg-step2').style.display = 'none';
+  document.getElementById('reg-step1').style.display = 'block';
+  selectedWorkshop = null;
+}
+
+document.getElementById('reg-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('rf-submit');
+  const err = document.getElementById('rf-error');
+  btn.textContent = 'שולח...';
+  btn.disabled = true;
+  err.style.display = 'none';
+
+  try {
+    const res = await fetch(PORTAL_API + '/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        workshop_id: selectedWorkshop.id,
+        child_name: document.getElementById('rf-child').value,
+        child_age: parseInt(document.getElementById('rf-age').value),
+        parent_name: document.getElementById('rf-parent').value,
+        parent_phone: document.getElementById('rf-phone').value,
+      })
+    });
+    if (!res.ok) throw new Error();
+    document.getElementById('reg-step2').style.display = 'none';
+    document.getElementById('reg-step3').style.display = 'block';
+    document.getElementById('reg-step3').scrollIntoView({ behavior:'smooth' });
+  } catch {
+    err.textContent = 'אירעה שגיאה, נסו שוב או פנו בוואטסאפ';
+    err.style.display = 'block';
+    btn.textContent = 'שלחו רישום ←';
+    btn.disabled = false;
+  }
+});
+
+loadSlots();
+</script>
+
 <!-- ============ FINAL CTA ============ -->
 <section class="section finalcta" id="contact">
   <div class="wrap reveal">
@@ -685,6 +878,9 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
     <a class="btn btn-wa btn-lg" href="https://wa.me/972542351166?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%90%D7%A4%D7%A9%D7%A8%20%D7%A2%D7%95%D7%93%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A4%D7%99%D7%99%D7%A0%D7%A7%D7%99%D7%93%D7%A1%3F" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.06c-.25.69-1.45 1.32-1.99 1.36-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.12-4.88-4.31-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.25-.29.55-.36.73-.36.18 0 .37 0 .53.01.17.01.4-.07.62.47.25.61.85 2.11.92 2.26.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.31 2.35 1.46.29.15.46.12.62-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.62-.14.25.09 1.55.73 1.81.86.27.13.45.2.51.31.07.11.07.64-.18 1.33Z"/></svg>
       דברו איתנו בוואטסאפ
+    </a>
+    <a class="btn btn-register btn-lg" href="#register" style="margin-top:16px">
+      ✏️ הירשמו ובחרו מועד
     </a>
   </div>
 </section>
