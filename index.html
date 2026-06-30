@@ -328,7 +328,7 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
 @media(max-width:360px){.brand .bt b{font-size:15px}}
 
 /* ---------- cross-link banner ---------- */
-.cross-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;background:var(--grad);color:#fff;border-radius:var(--r-lg);padding:28px 34px;box-shadow:var(--shadow-fuchsia);cursor:pointer;transition:transform .22s,box-shadow .22s}
+.cross-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(135deg,var(--ink) 0%,var(--blue-d) 100%);color:#fff;border-radius:var(--r-lg);padding:40px 44px;box-shadow:var(--shadow-fuchsia);cursor:pointer;transition:transform .22s,box-shadow .22s}
 .cross-banner:hover{transform:translateY(-4px);box-shadow:0 26px 60px rgba(236,0,140,.3)}
 .cross-banner .cb-l{display:flex;align-items:center;gap:18px}
 .cross-banner .cb-ic{width:54px;height:54px;border-radius:16px;background:rgba(255,255,255,.2);display:grid;place-items:center;flex-shrink:0}
@@ -338,6 +338,9 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
 .cross-banner .cb-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:16px;white-space:nowrap;background:rgba(255,255,255,.18);padding:12px 22px;border-radius:50px}
 .cross-banner .cb-arrow svg{width:20px;height:20px}
 @media(max-width:640px){.cross-banner{flex-direction:column;text-align:center;padding:28px 24px}.cross-banner .cb-l{flex-direction:column}}
+.product-divider{text-align:center;padding:32px 0 8px;color:var(--ink-3);font-size:13px;letter-spacing:.04em}
+.product-divider::before,.product-divider::after{content:'';display:inline-block;width:80px;height:1px;background:var(--line);vertical-align:middle;margin:0 10px}
+.cb-badge{display:inline-block;background:var(--fuchsia);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;margin-bottom:8px;letter-spacing:.03em}
 
 /* ---------- workshops: format tiles ---------- */
 .fmt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
@@ -936,12 +939,13 @@ loadSlots();
 </section>
 
 <!-- ============ CROSS-LINK BANNER ============ -->
+<div class="wrap"><div class="product-divider"><span>— ⬇ מוצר אחר ⬇ —</span></div></div>
 <section style="padding:0 0 88px">
   <div class="wrap">
     <a class="cross-banner reveal" data-page="workshops" href="#workshops">
       <div class="cb-l">
         <div class="cb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></div>
-        <div><b>מחפשים סדנה למתנ"ס או קהילה?</b><span>ירדן מגיע אליכם עם סדנת חינוך פיננסי פרונטלית וחווייתית.</span></div>
+        <div><span class="cb-badge">מוצר נפרד לקהילות</span><b>פיינקידס מגיע אליכם — סדנאות פרונטליות לקהילות ומוסדות</b><span>ירדן מגיע אליכם עם סדנת חינוך פיננסי פרונטלית וחווייתית.</span></div>
       </div>
       <span class="cb-arrow">לעמוד הסדנאות <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg></span>
     </a>
@@ -965,7 +969,7 @@ loadSlots();
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.06c-.25.69-1.45 1.32-1.99 1.36-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.12-4.88-4.31-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.25-.29.55-.36.73-.36.18 0 .37 0 .53.01.17.01.4-.07.62.47.25.61.85 2.11.92 2.26.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.31 2.35 1.46.29.15.46.12.62-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.62-.14.25.09 1.55.73 1.81.86.27.13.45.2.51.31.07.11.07.64-.18 1.33Z"/></svg>
           לתיאום סדנה בוואטסאפ
         </a>
-        <a class="btn btn-ghost btn-lg" data-page="digital" href="#top">לתוכנית הדיגיטלית</a>
+        <a class="btn btn-ghost btn-lg" data-page="digital" href="#top">← חזרה לתוכנית הדיגיטלית להורים</a>
       </div>
     </div>
   </section>
