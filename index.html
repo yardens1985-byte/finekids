@@ -448,9 +448,17 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
       <div class="hero-disc">
         <img class="hero-logo" src="assets/finkids-logo-transparent.png" alt="ילדים מושיטים יד לכוכבים">
       </div>
+      <div class="coin c1"><span>₪</span></div>
+      <div class="coin c2"><span>₪</span></div>
+      <div class="coin c3"><span>₪</span></div>
+      <div class="coin c4"><span>₪</span></div>
       <span class="spark s1">✦</span>
       <span class="spark s2">✦</span>
       <span class="spark s3">★</span>
+      <div class="mini-graph">
+        <div class="mg-top"><b>חיסכון</b><span class="mg-up">▲ +18%</span></div>
+        <div class="bars"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
     </div>
   </div>
 </section>
@@ -661,10 +669,10 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
 <section class="section scarcity" id="scarcity">
   <div class="wrap scarcity-in">
     <div class="reveal">
-      <span class="eyebrow">🟢 קבוצה חדשה נפתחת עכשיו — נותר מקום 1</span>
+      <span class="eyebrow" id="scarcity-eyebrow">🟢 קבוצה חדשה נפתחת עכשיו — נותר מקום 1</span>
       <h2>עד 4 ילדים בלבד בכל קבוצה</h2>
       <p class="lead">אנחנו לא מתפשרים על איכות. בקבוצה קטנה כל ילד מקבל התייחסות אישית מלאה, מספיק זמן לשאול, לטעות וללמוד — וזה בדיוק ההבדל בין "עוד חוג" לבין חוויה שמשנה.</p>
-      <span class="scarcity-badge reveal">🟢 נותר מקום אחד בלבד</span>
+      <span class="scarcity-badge reveal" id="scarcity-badge">🟢 נותר מקום אחד בלבד</span>
       <a class="btn btn-register btn-xl reveal" href="#register" style="margin-top:4px">
         ✏️ הירשמו ובחרו מועד
       </a>
@@ -678,7 +686,7 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
         <span class="price-tag">מחיר היכרות לנרשמים הקרובים</span>
       </div>
     </div>
-    <div class="seats reveal">
+    <div class="seats reveal" id="scarcity-seats">
       <div class="seat taken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><b>תפוס</b></div>
       <div class="seat taken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><b>תפוס</b></div>
       <div class="seat taken"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg><b>תפוס</b></div>
@@ -776,6 +784,38 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
 const PORTAL_API = 'https://hakhamim-portal.vercel.app';
 let selectedWorkshop = null;
 
+function updateScarcity(workshops) {
+  if (!workshops.length) return;
+  const w = workshops[0];
+  const taken = w.current_count;
+  const total = w.max_capacity;
+  const available = total - taken;
+
+  const eyebrow = document.getElementById('scarcity-eyebrow');
+  if (eyebrow) eyebrow.textContent = available === 1
+    ? '🟢 קבוצה חדשה נפתחת עכשיו — נותר מקום 1'
+    : `🟢 קבוצה חדשה נפתחת עכשיו — נותרו ${available} מקומות`;
+
+  const badge = document.getElementById('scarcity-badge');
+  if (badge) badge.textContent = available === 1
+    ? '🟢 נותר מקום אחד בלבד'
+    : `🟢 נותרו ${available} מקומות בלבד`;
+
+  const seatsEl = document.getElementById('scarcity-seats');
+  if (!seatsEl) return;
+  const svgTaken = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6"/></svg>`;
+  const svgFree = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4" stroke-dasharray="3 2.5"/><path d="M5 21c0-4 3-6 7-6s7 2 7 6" stroke-dasharray="3 2.5"/></svg>`;
+  let html = '';
+  for (let i = 0; i < total; i++) {
+    if (i < taken) {
+      html += `<div class="seat taken">${svgTaken}<b>תפוס</b></div>`;
+    } else {
+      html += `<div class="seat">${svgFree}<b>פנוי</b></div>`;
+    }
+  }
+  seatsEl.innerHTML = html;
+}
+
 function getSessionDates(startDate) {
   const dates = [];
   const start = new Date(startDate);
@@ -790,7 +830,9 @@ function getSessionDates(startDate) {
 async function loadSlots() {
   try {
     const res = await fetch(PORTAL_API + '/api/workshops');
-    const workshops = await res.json();
+    const data = await res.json();
+    const workshops = Array.isArray(data) ? data : [data];
+    updateScarcity(workshops);
     const container = document.getElementById('slots-container');
 
     if (!workshops.length) {
@@ -1029,23 +1071,25 @@ loadSlots();
 <section class="section leadform" id="lead-form">
   <div class="wrap">
     <div class="leadform-inner reveal">
-      <span class="eyebrow">רוצים לשמוע עוד?</span>
-      <h2>רוצים לשמוע עוד? <span class="grad-text">השאירו פרטים</span></h2>
+      <span class="eyebrow">צרו קשר</span>
+      <h2>נשמח לדבר — <span class="grad-text">שלחו פרטים ונחזור בוואטסאפ</span></h2>
       <p class="lead">מלאו שם ומספר טלפון — ירדן יחזור אליכם בוואטסאפ.</p>
+      <p style="color:var(--ink-2);font-size:16px;margin-top:4px">מלאו שם ומספר — ירדן יחזור אליכם בוואטסאפ תוך שעות ספורות 💬</p>
       <div class="lf-fields">
         <div class="lf-field">
-          <input type="text" id="lf-name" placeholder="שם מלא" autocomplete="name">
+          <input type="text" id="lf-name" placeholder="שם מלא, למשל: דנה כהן" autocomplete="name">
           <div class="lf-msg" id="lf-name-msg">אנא הכניסו שם מלא</div>
         </div>
         <div class="lf-field">
-          <input type="tel" id="lf-phone" placeholder="מספר טלפון" autocomplete="tel" inputmode="numeric">
+          <input type="tel" id="lf-phone" placeholder="05X-XXX-XXXX" autocomplete="tel" inputmode="numeric" pattern="[0-9]*">
           <div class="lf-msg" id="lf-phone-msg">אנא הכניסו מספר טלפון</div>
         </div>
       </div>
       <button class="btn btn-wa btn-lg" id="lf-submit" type="button">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.06c-.25.69-1.45 1.32-1.99 1.36-.53.05-1.02.24-3.44-.72-2.9-1.14-4.74-4.12-4.88-4.31-.14-.19-1.16-1.55-1.16-2.96 0-1.4.74-2.09 1-2.38.25-.29.55-.36.73-.36.18 0 .37 0 .53.01.17.01.4-.07.62.47.25.61.85 2.11.92 2.26.07.15.12.32.02.51-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.02 1.12.99 2.06 1.31 2.35 1.46.29.15.46.12.62-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.62-.14.25.09 1.55.73 1.81.86.27.13.45.2.51.31.07.11.07.64-.18 1.33Z"/></svg>
-        דברו איתנו בוואטסאפ 📲
+        שלחו ← יפתח וואטסאפ עם הפרטים שלכם
       </button>
+      <p style="font-size:12px;color:var(--ink-3);margin-top:8px;text-align:center">✓ לא שומרים פרטים — ניפתח שיחת וואטסאפ מיידית</p>
     </div>
   </div>
 </section>
