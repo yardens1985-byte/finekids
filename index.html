@@ -861,6 +861,7 @@ document.getElementById('reg-form').addEventListener('submit', async function(e)
       })
     });
     if (!res.ok) throw new Error();
+    if (window.fbq) fbq('track', 'CompleteRegistration', { content_name: 'workshop_registration' });
     document.getElementById('reg-step2').style.display = 'none';
     document.getElementById('reg-step3').style.display = 'block';
     document.getElementById('reg-step3').scrollIntoView({ behavior:'smooth' });
@@ -1166,8 +1167,23 @@ document.getElementById('lf-submit').addEventListener('click',function(){
   if(!name){nameEl.classList.add('lf-err');nameMsg.classList.add('show');ok=false;}
   if(!phone){phoneEl.classList.add('lf-err');phoneMsg.classList.add('show');ok=false;}
   if(!ok)return;
+  if(window.fbq) fbq('track','Lead',{content_name:'lead_form'});
   const msg='היי ירדן, קוראים לי '+name+' והטלפון שלי '+phone+'.\nאני רוצה לשמוע עוד על פיינקידס 🙂';
   window.open('https://wa.me/972542351166?text='+encodeURIComponent(msg),'_blank','noopener');
+});
+</script>
+
+<!-- Meta Pixel — event tracking -->
+<script>
+document.addEventListener('click', function(e){
+  var el = e.target.closest('a');
+  if(!el || !window.fbq) return;
+  var href = el.getAttribute('href') || '';
+  if(href.indexOf('wa.me') !== -1 || href.indexOf('api.whatsapp.com') !== -1){
+    fbq('track','Contact',{method:'whatsapp'});
+  } else if(href === '#register'){
+    fbq('track','ViewContent',{content_name:'registration_cta'});
+  }
 });
 </script>
 </body>
