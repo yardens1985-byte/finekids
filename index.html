@@ -1181,6 +1181,8 @@ document.addEventListener('click', function(e){
   var href = el.getAttribute('href') || '';
   if(href.indexOf('wa.me') !== -1 || href.indexOf('api.whatsapp.com') !== -1){
     fbq('track','Contact',{method:'whatsapp'});
+  } else if(href.indexOf('pay.grow.link') !== -1 || href.indexOf('grow.link') !== -1){
+    fbq('track','InitiateCheckout',{content_name:'workshop_payment',value:297,currency:'ILS'});
   } else if(href === '#register'){
     fbq('track','ViewContent',{content_name:'registration_cta'});
   }
