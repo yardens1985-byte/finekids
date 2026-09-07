@@ -1264,6 +1264,9 @@ document.addEventListener('click', function(e){
       try { localStorage.setItem(key,'1'); } catch(e){}
     }
 
+    // Show an on-screen thank-you block for the returning customer.
+    showThankYou();
+
     // Strip the payment params from the URL so a manual refresh can't refire.
     try {
       params.delete('payment'); params.delete('transactionId'); params.delete('transaction_id');
@@ -1272,6 +1275,46 @@ document.addEventListener('click', function(e){
       history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
     } catch(e){}
   } catch(e){}
+
+  function showThankYou(){
+    if (document.getElementById('thankyou-overlay')) return;
+    var wa = 'https://wa.me/972542351166?text=' + encodeURIComponent('שילמתי על סדנת חכמים עם כסף של פיינקידס 🙂 מתי מקבלים אישור והנחיות הצטרפות?');
+    var ov = document.createElement('div');
+    ov.id = 'thankyou-overlay';
+    ov.setAttribute('role','dialog');
+    ov.setAttribute('aria-modal','true');
+    ov.innerHTML =
+      '<div class="ty-card">' +
+        '<div class="ty-emoji">🎉</div>' +
+        '<h2 class="ty-title">תודה על הרכישה!</h2>' +
+        '<p class="ty-text">התשלום התקבל בהצלחה והמקום שלכם נשמר. 💙<br>נשלח אליכם אישור והנחיות הצטרפות לוואטסאפ בהקדם.</p>' +
+        '<a class="ty-wa" href="' + wa + '" target="_blank" rel="noopener">💬 לפרטים נוספים בוואטסאפ</a>' +
+        '<button type="button" class="ty-close" id="ty-close-btn">חזרה לאתר</button>' +
+      '</div>';
+    var css = document.createElement('style');
+    css.textContent =
+      '#thankyou-overlay{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;' +
+        'background:rgba(26,26,46,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:tyFade .3s ease}' +
+      '#thankyou-overlay .ty-card{background:#fff;border-radius:28px;max-width:440px;width:100%;padding:40px 30px;text-align:center;' +
+        'box-shadow:0 30px 80px rgba(0,138,200,.35);border-top:6px solid transparent;' +
+        'border-image:linear-gradient(135deg,#00AEEF 0%,#EC008C 100%) 1;animation:tyPop .45s cubic-bezier(.34,1.4,.5,1)}' +
+      '#thankyou-overlay .ty-emoji{font-size:4.5rem;line-height:1;margin-bottom:10px}' +
+      '#thankyou-overlay .ty-title{font-size:clamp(26px,4vw,34px);margin:0 0 12px;background:linear-gradient(135deg,#00AEEF,#EC008C);' +
+        '-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-weight:800}' +
+      '#thankyou-overlay .ty-text{color:#55566b;font-size:17px;line-height:1.7;margin:0 0 26px}' +
+      '#thankyou-overlay .ty-wa{display:block;text-decoration:none;background:#25D366;color:#fff;font-weight:700;font-size:17px;' +
+        'padding:15px 20px;border-radius:14px;margin-bottom:12px;transition:.2s}' +
+      '#thankyou-overlay .ty-wa:hover{background:#1da851}' +
+      '#thankyou-overlay .ty-close{width:100%;background:none;border:1.5px solid #e6eef3;color:#55566b;font-family:inherit;' +
+        'font-size:16px;font-weight:600;padding:13px 20px;border-radius:14px;cursor:pointer;transition:.2s}' +
+      '#thankyou-overlay .ty-close:hover{background:#f4fbfe;border-color:#00AEEF;color:#00AEEF}' +
+      '@keyframes tyFade{from{opacity:0}to{opacity:1}}' +
+      '@keyframes tyPop{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}';
+    document.head.appendChild(css);
+    document.body.appendChild(ov);
+    document.getElementById('ty-close-btn').addEventListener('click', function(){ ov.remove(); });
+    ov.addEventListener('click', function(e){ if(e.target === ov) ov.remove(); });
+  }
 })();
 </script>
 </body>
