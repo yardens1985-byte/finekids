@@ -1252,16 +1252,19 @@ document.addEventListener('click', function(e){
     var params = new URLSearchParams(window.location.search);
     if (params.get('payment') !== 'success') return;
 
-    // Dedup: never fire twice for the same payment (guards page refresh / re-share).
+    // Dedup: only when Grow passes a real transaction id — then never fire twice for
+    // the same payment (even across refresh / re-share). Without an id we DON'T set a
+    // permanent flag: refresh protection is already handled by stripping the param below,
+    // and this avoids ever blocking a genuine second purchase.
     var txn = params.get('transactionId') || params.get('transaction_id') ||
               params.get('asmachta') || params.get('orderId') || params.get('order_id') || '';
-    var key = 'fb_purchase_' + (txn || 'nosid');
+    var key = txn ? 'fb_purchase_' + txn : '';
     var already = false;
-    try { already = localStorage.getItem(key) === '1'; } catch(e){}
+    if (key) { try { already = localStorage.getItem(key) === '1'; } catch(e){} }
 
     if (!already && window.fbq) {
       fbq('track','Purchase',{value:297,currency:'ILS',content_name:'workshop_payment'});
-      try { localStorage.setItem(key,'1'); } catch(e){}
+      if (key) { try { localStorage.setItem(key,'1'); } catch(e){} }
     }
 
     // Show an on-screen thank-you block for the returning customer.
