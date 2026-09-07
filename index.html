@@ -690,11 +690,21 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
 
     <!-- שלב 1: בחירת מועד -->
     <div id="reg-step1">
-      <div id="slots-container" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:32px">
+      <div id="slots-container" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:24px">
         <div style="text-align:center;padding:48px;color:var(--ink-3);grid-column:1/-1">
           <div style="font-size:2rem;margin-bottom:12px">⏳</div>
           <p>טוען מועדים...</p>
         </div>
+      </div>
+
+      <!-- לא מצאתם מועד שמתאים? יצירת קשר לבדיקת מועדים נוספים -->
+      <div style="border:2px dashed rgba(0,174,239,.35);background:linear-gradient(135deg,var(--sky-2),rgba(236,0,140,.05));border-radius:18px;padding:26px 22px;text-align:center;max-width:640px;margin:0 auto">
+        <div style="font-size:1.9rem;margin-bottom:6px">🗓️</div>
+        <h3 style="font-size:20px;font-weight:800;color:var(--ink);margin-bottom:6px">לא מצאתם מועד שמתאים לכם?</h3>
+        <p style="color:var(--ink-2);font-size:15px;margin-bottom:18px">אין בעיה! שלחו לי הודעה בוואטסאפ ונמצא יחד מועד שמתאים בדיוק לכם — נשמח לפתוח קבוצות במועדים נוספים.</p>
+        <a class="btn btn-wa" href="https://wa.me/972542351166?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%A2%D7%91%D7%A8%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%94%D7%9E%D7%95%D7%A2%D7%93%D7%99%D7%9D%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%9C%D7%90%20%D7%9E%D7%A6%D7%90%D7%AA%D7%99%20%D7%A9%D7%A2%D7%94%20%D7%A9%D7%9E%D7%AA%D7%90%D7%99%D7%9E%D7%94%20%D7%9C%D7%A0%D7%95%20%D7%9C%D7%A4%D7%99%D7%99%D7%A0%D7%A7%D7%99%D7%93%D7%A1.%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%90%D7%9D%20%D7%99%D7%A9%20%D7%9E%D7%95%D7%A2%D7%93%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%A9%D7%96%D7%9E%D7%99%D7%A0%D7%99%D7%9D.%20%D7%AA%D7%95%D7%93%D7%94!" target="_blank" rel="noopener" style="font-size:16px;padding:13px 26px">
+          💬 שלחו לי הודעה בוואטסאפ
+        </a>
       </div>
     </div>
 
@@ -766,6 +776,11 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
 .slot-day{font-size:19px;font-weight:800;color:var(--ink);margin-bottom:4px}
 .slot-time{font-size:24px;font-weight:800;color:var(--blue);margin-bottom:10px}
 .slot-dates{font-size:13px;color:var(--ink-3);line-height:1.8}
+.slot-tag{display:inline-block;font-size:11px;font-weight:800;color:var(--blue);background:rgba(0,174,239,.12);padding:2px 10px;border-radius:50px;margin-inline-start:7px;vertical-align:middle}
+.slot-label{display:inline-block;font-size:11px;font-weight:800;color:#EC008C;background:rgba(236,0,140,.12);padding:2px 10px;border-radius:50px;margin-inline-start:7px;vertical-align:middle}
+.day-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.day-chip{display:inline-flex;align-items:baseline;gap:5px;font-size:12.5px;color:var(--ink-2);background:#f2f9fd;border:1px solid #e2eef6;padding:4px 10px;border-radius:10px}
+.day-chip b{color:var(--blue);font-weight:800;font-size:13px}
 .slot-spots{display:inline-flex;align-items:center;gap:6px;margin-top:10px;font-size:13px;font-weight:600;color:var(--green);background:rgba(57,181,74,.1);padding:4px 12px;border-radius:50px}
 </style>
 
@@ -774,15 +789,52 @@ const PORTAL_API = 'https://hakhamim-portal.vercel.app';
 let selectedWorkshop = null;
 
 
-function getSessionDates(startDate) {
-  const dates = [];
-  const start = new Date(startDate);
-  for (let i = 0; i < 5; i++) {
+const DAY_NAMES = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+const DAY_LETTERS = ['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'];
+
+function fmtDate(d) {
+  return d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' });
+}
+
+// מחזיר את אובייקטי התאריכים של המפגשים, ממוינים.
+function sessionDateObjs(w) {
+  if (w && Array.isArray(w.session_dates) && w.session_dates.length) {
+    return w.session_dates.map(s => new Date(s)).sort((a, b) => a - b);
+  }
+  const start = new Date(w && w.start_date ? w.start_date : w);
+  return Array.from({ length: 5 }, (_, i) => {
     const d = new Date(start);
     d.setDate(start.getDate() + i * 7);
-    dates.push(d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' }));
+    return d;
+  });
+}
+
+function isWeekly(objs) {
+  return objs.every(d => d.getDay() === objs[0].getDay());
+}
+
+function isConsecutive(objs) {
+  for (let i = 1; i < objs.length; i++) {
+    if (Math.round((objs[i] - objs[i - 1]) / 86400000) !== 1) return false;
   }
-  return dates;
+  return true;
+}
+
+// כותרת חכמה + בלוק תאריכים לפי סוג המועד.
+function slotHeader(objs) {
+  if (isWeekly(objs)) return `ימי ${DAY_NAMES[objs[0].getDay()]}`;
+  const first = DAY_NAMES[objs[0].getDay()], last = DAY_NAMES[objs[objs.length - 1].getDay()];
+  const tag = isConsecutive(objs) ? 'שבוע מרוכז' : 'מועד מיוחד';
+  const label = isConsecutive(objs) ? `${first}–${last}` : `${objs.length} מפגשים`;
+  return `${label} <span class="slot-tag">${tag}</span>`;
+}
+
+function slotDatesBlock(objs) {
+  if (isWeekly(objs)) {
+    return `<div class="slot-dates">📅 ${objs.map(fmtDate).join(' · ')}</div>`;
+  }
+  const chips = objs.map(d => `<span class="day-chip"><b>${DAY_LETTERS[d.getDay()]}</b>${fmtDate(d)}</span>`).join('');
+  return `<div class="day-strip">${chips}</div>`;
 }
 
 async function loadSlots() {
@@ -803,13 +855,13 @@ async function loadSlots() {
     }
 
     container.innerHTML = workshops.map(w => {
-      const dates = getSessionDates(w.start_date);
+      const objs = sessionDateObjs(w);
       const spots = w.max_capacity - w.current_count;
       return `
         <div class="slot-card" onclick="selectSlot(${JSON.stringify(w).replace(/"/g,'&quot;')}, this)">
-          <div class="slot-day">ימי ${w.day_of_week}</div>
+          <div class="slot-day">${slotHeader(objs)}${w.label ? `<span class="slot-label">${w.label}</span>` : ''}</div>
           <div class="slot-time">${w.time}</div>
-          <div class="slot-dates">📅 ${dates.join(' · ')}</div>
+          ${slotDatesBlock(objs)}
           <div class="slot-spots">🟢 נותרו ${spots} מקומות</div>
         </div>`;
     }).join('');
@@ -823,9 +875,13 @@ function selectSlot(workshop, el) {
   document.querySelectorAll('.slot-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
   selectedWorkshop = workshop;
-  const dates = getSessionDates(workshop.start_date);
-  document.getElementById('selected-slot-text').textContent = `ימי ${workshop.day_of_week} בשעה ${workshop.time}`;
-  document.getElementById('selected-slot-dates').textContent = '📅 ' + dates.join(' · ');
+  const objs = sessionDateObjs(workshop);
+  const heading = isWeekly(objs)
+    ? `ימי ${DAY_NAMES[objs[0].getDay()]}`
+    : `${DAY_NAMES[objs[0].getDay()]}–${DAY_NAMES[objs[objs.length - 1].getDay()]}`;
+  document.getElementById('selected-slot-text').textContent = `${heading} בשעה ${workshop.time}`;
+  document.getElementById('selected-slot-dates').textContent =
+    '📅 ' + objs.map(d => `${DAY_LETTERS[d.getDay()]} ${fmtDate(d)}`).join(' · ');
   setTimeout(() => {
     document.getElementById('reg-step1').style.display = 'none';
     document.getElementById('reg-step2').style.display = 'block';
@@ -1187,6 +1243,36 @@ document.addEventListener('click', function(e){
     fbq('track','ViewContent',{content_name:'registration_cta'});
   }
 });
+
+// Purchase — fires only on the success/thank-you page after a completed payment.
+// Set Grow's success redirect URL to: https://finekids.vercel.app/?payment=success
+// (Grow may append its own params like transaction id — that's fine, we key dedup on it.)
+(function(){
+  try {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('payment') !== 'success') return;
+
+    // Dedup: never fire twice for the same payment (guards page refresh / re-share).
+    var txn = params.get('transactionId') || params.get('transaction_id') ||
+              params.get('asmachta') || params.get('orderId') || params.get('order_id') || '';
+    var key = 'fb_purchase_' + (txn || 'nosid');
+    var already = false;
+    try { already = localStorage.getItem(key) === '1'; } catch(e){}
+
+    if (!already && window.fbq) {
+      fbq('track','Purchase',{value:297,currency:'ILS',content_name:'workshop_payment'});
+      try { localStorage.setItem(key,'1'); } catch(e){}
+    }
+
+    // Strip the payment params from the URL so a manual refresh can't refire.
+    try {
+      params.delete('payment'); params.delete('transactionId'); params.delete('transaction_id');
+      params.delete('asmachta'); params.delete('orderId'); params.delete('order_id');
+      var qs = params.toString();
+      history.replaceState(null, '', window.location.pathname + (qs ? '?' + qs : '') + window.location.hash);
+    } catch(e){}
+  } catch(e){}
+})();
 </script>
 </body>
 </html>
