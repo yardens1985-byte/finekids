@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '28106071105754225');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=28106071105754225&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הרשמה לסדנה | פיינקידס — חכמים עם כסף</title>
+<meta name="description" content="בחרו מועד לסדנת החינוך הפיננסי של פיינקידס: 5 מפגשים, 30 דקות כל מפגש, עד 4 ילדים בקבוצה.">
+<meta property="og:title" content="פיינקידס · בחרו מועד לסדנה">
+<meta property="og:description" content="5 מפגשים · 30 דקות · עד 4 ילדים בקבוצה. בוחרים מועד ונרשמים בדקה.">
+<meta property="og:image" content="https://finekids.vercel.app/assets/finkids-logo.jpg">
+<meta property="og:url" content="https://finekids.vercel.app/register">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#00AEEF">
+<link rel="icon" href="/assets/finkids-logo-transparent.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#00AEEF; --blue-d:#0090c8;
+  --pink:#EC008C;
+  --ink:#1A1A2E; --ink-2:#55566b; --ink-3:#8a8ba0;
+  --sky:#EAF7FD; --paper:#ffffff; --line:#dcecf5;
+  --green:#39B54A; --wa:#25D366; --wa-d:#1da851;
+  --display:'Fredoka','Rubik',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Rubik',system-ui,sans-serif;color:var(--ink);
+  background:var(--sky);
+  background-image:radial-gradient(circle at 1px 1px,rgba(0,174,239,.13) 1px,transparent 0);
+  background-size:22px 22px;
+  min-height:100vh;line-height:1.5;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--pink);outline-offset:3px;border-radius:8px}
+
+.page{max-width:980px;margin:0 auto;padding:22px 16px 56px}
+
+/* ---------- header ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand img{width:46px;height:46px;object-fit:contain}
+.brand b{display:block;font-family:var(--display);font-weight:700;font-size:19px;line-height:1.1}
+.brand span{font-size:12.5px;color:var(--ink-3)}
+.top .more{font-size:14px;font-weight:600;color:var(--blue-d);text-decoration:none;white-space:nowrap}
+.top .more:hover{text-decoration:underline}
+
+.intro{text-align:center;margin-bottom:28px}
+.intro h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,7vw,48px);line-height:1.1;letter-spacing:-.5px}
+.intro h1 em{font-style:normal;color:var(--pink)}
+.facts{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px;list-style:none}
+.facts li{background:var(--paper);border:1px solid var(--line);border-radius:50px;padding:6px 14px;font-size:14px;font-weight:500;color:var(--ink-2)}
+.facts li b{font-family:var(--display);font-weight:600;color:var(--ink)}
+.facts li.price{background:var(--ink);border-color:var(--ink);color:#fff}
+.facts li.price b{color:#fff}
+
+/* ---------- tickets ---------- */
+.tickets{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px}
+.ticket{
+  --hole:14px;
+  display:block;width:100%;text-align:start;font:inherit;color:inherit;
+  background:var(--paper);border:0;border-radius:20px;cursor:pointer;
+  box-shadow:0 2px 0 var(--line),0 10px 28px rgba(0,138,200,.10);
+  transition:transform .2s ease,box-shadow .2s ease;
+  position:relative;
+}
+.ticket:hover{transform:translateY(-3px);box-shadow:0 2px 0 var(--line),0 16px 36px rgba(0,138,200,.18)}
+.ticket[disabled]{cursor:default;opacity:.55}
+.ticket[disabled]:hover{transform:none}
+.t-head{display:block;padding:18px 20px 16px;border-radius:20px 20px 0 0;background:linear-gradient(135deg,var(--blue),#33c3f5);color:#fff;position:relative}
+.t-day{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-weight:600;font-size:16px}
+.t-tag{font-size:11.5px;font-weight:700;background:rgba(255,255,255,.22);padding:2px 10px;border-radius:50px}
+.t-label{font-size:11.5px;font-weight:700;background:var(--pink);color:#fff;padding:2px 10px;border-radius:50px}
+.t-time{display:block;font-family:var(--display);font-weight:700;font-size:44px;line-height:1;margin-top:6px;letter-spacing:.5px}
+.t-time small{font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;opacity:.85;margin-inline-start:6px;letter-spacing:0}
+
+/* perforation: two side notches + dashed line */
+.t-perf{display:block;height:var(--hole);position:relative;background:var(--paper)}
+.t-perf::before{
+  content:"";position:absolute;inset:50% 18px auto;border-top:2px dashed var(--line);
+}
+.t-perf i{position:absolute;top:0;width:var(--hole);height:var(--hole);border-radius:50%;background:var(--sky)}
+.t-perf i:first-child{right:calc(var(--hole) / -2)}
+.t-perf i:last-child{left:calc(var(--hole) / -2)}
+
+.t-body{display:block;padding:6px 20px 18px}
+.t-caption{display:block;font-size:12px;font-weight:600;color:var(--ink-3);margin-bottom:8px}
+.punches{display:flex;justify-content:space-between;gap:4px}
+.punch{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;min-width:0}
+.punch .hole{width:30px;height:30px;border-radius:50%;background:var(--sky);box-shadow:inset 0 2px 4px rgba(0,100,150,.18);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--blue-d)}
+.punch .d{font-size:13px;font-weight:600;color:var(--ink);direction:ltr;font-variant-numeric:tabular-nums}
+.punch .wd{font-size:11px;color:var(--ink-3);margin-top:-4px}
+
+.t-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.seats{display:flex;align-items:center;gap:6px}
+.seat{width:16px;height:16px;border-radius:50%;border:2px solid var(--green);background:transparent}
+.seat.taken{background:var(--ink-3);border-color:var(--ink-3)}
+.seats-txt{font-size:13px;font-weight:600;color:var(--green);margin-inline-start:4px}
+.seats-txt.full{color:var(--ink-3)}
+.t-cta{font-size:14px;font-weight:700;color:var(--pink);white-space:nowrap}
+
+/* tear animation when chosen */
+.ticket.tearing{animation:tear .38s ease-in forwards}
+@keyframes tear{
+  0%{transform:none}
+  35%{transform:translateY(-6px) rotate(-1.5deg)}
+  100%{transform:translateY(-26px) rotate(3deg);opacity:0}
+}
+
+/* status (loading/empty/error) */
+.status{grid-column:1/-1;text-align:center;padding:40px 16px;color:var(--ink-2);background:var(--paper);border-radius:20px}
+.status b{display:block;font-family:var(--display);font-size:20px;color:var(--ink);margin-bottom:6px}
+
+/* no slot fits */
+.other{margin:32px auto 0;max-width:560px;text-align:center;padding:22px 20px;border:2px dashed rgba(0,174,239,.4);border-radius:20px;background:rgba(255,255,255,.6)}
+.other h2{font-family:var(--display);font-weight:600;font-size:21px;margin-bottom:4px}
+.other p{color:var(--ink-2);font-size:15px;margin-bottom:14px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;font:inherit;font-weight:700;font-size:16px;padding:13px 24px;cursor:pointer;text-decoration:none;transition:background .2s,transform .2s}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-wa:hover{background:var(--wa-d)}
+.btn-main{background:var(--pink);color:#fff;width:100%;font-size:18px;padding:16px}
+.btn-main:hover{background:#c70076}
+.btn-main[disabled]{opacity:.6;cursor:wait}
+
+/* ---------- step 2: form ---------- */
+.narrow{max-width:520px;margin:0 auto}
+.chosen .ticket{cursor:default}
+.chosen .ticket:hover{transform:none}
+.change{display:flex;justify-content:center;margin:12px 0 22px}
+.link-btn{background:none;border:0;font:inherit;font-size:15px;font-weight:600;color:var(--blue-d);cursor:pointer;padding:6px 10px;text-decoration:underline;text-underline-offset:3px}
+.form{background:var(--paper);border-radius:20px;padding:24px 20px;box-shadow:0 10px 28px rgba(0,138,200,.10)}
+.form h2{font-family:var(--display);font-weight:600;font-size:22px;margin-bottom:16px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.field input,.field select{width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;font:inherit;font-size:16px;background:#fff;color:var(--ink);transition:border-color .2s}
+.field input:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,174,239,.15)}
+.field input[type=tel],.field input[type=email]{direction:ltr;text-align:right}
+.row2{display:grid;grid-template-columns:1fr 110px;gap:12px}
+.err{display:none;color:#c53030;font-size:14px;margin-top:10px;text-align:center}
+
+/* ---------- step 3: thanks ---------- */
+.thanks{text-align:center;background:var(--paper);border-radius:20px;padding:32px 22px;box-shadow:0 10px 28px rgba(0,138,200,.10)}
+.thanks .big{font-size:52px;line-height:1;margin-bottom:10px}
+.thanks h2{font-family:var(--display);font-weight:700;font-size:28px;margin-bottom:8px}
+.thanks p{color:var(--ink-2);margin-bottom:22px}
+.thanks small{display:block;margin-top:14px;color:var(--ink-3);font-size:14px}
+
+[hidden]{display:none !important}
+
+@media (min-width:640px){
+  .page{padding-top:32px}
+  .form{padding:28px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important}
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="top">
+    <a class="brand" href="/" aria-label="פיינקידס, לאתר הראשי">
+      <img src="/assets/finkids-logo-transparent.png" alt="">
+      <span><b>פיינקידס</b><span>חכמים עם כסף</span></span>
+    </a>
+    <a class="more" href="/">על הסדנה ←</a>
+  </header>
+
+  <!-- שלב 1: בחירת מועד -->
+  <section id="step1">
+    <div class="intro">
+      <h1>בחרו <em>מועד</em> לסדנה</h1>
+      <ul class="facts">
+        <li><b>5</b> מפגשים שבועיים</li>
+        <li><b>30</b> דק׳ כל מפגש</li>
+        <li>עד <b>4</b> ילדים בקבוצה</li>
+        <li class="price"><b>297 ₪</b> לכל הסדנה</li>
+      </ul>
+    </div>
+
+    <div class="tickets" id="tickets" aria-live="polite">
+      <div class="status"><b>⏳</b>טוען מועדים...</div>
+    </div>
+
+    <div class="other">
+      <h2>לא מצאתם מועד שמתאים?</h2>
+      <p>שלחו לי הודעה בוואטסאפ ונמצא יחד מועד. אפשר לפתוח קבוצות במועדים נוספים.</p>
+      <a class="btn btn-wa" href="https://wa.me/972552998284?text=%D7%94%D7%99%D7%99%20%D7%99%D7%A8%D7%93%D7%9F%2C%20%D7%A2%D7%91%D7%A8%D7%AA%D7%99%20%D7%A2%D7%9C%20%D7%94%D7%9E%D7%95%D7%A2%D7%93%D7%99%D7%9D%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%95%D7%9C%D7%90%20%D7%9E%D7%A6%D7%90%D7%AA%D7%99%20%D7%A9%D7%A2%D7%94%20%D7%A9%D7%9E%D7%AA%D7%90%D7%99%D7%9E%D7%94%20%D7%9C%D7%A0%D7%95%20%D7%9C%D7%A4%D7%99%D7%99%D7%A0%D7%A7%D7%99%D7%93%D7%A1.%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%91%D7%93%D7%95%D7%A7%20%D7%90%D7%9D%20%D7%99%D7%A9%20%D7%9E%D7%95%D7%A2%D7%93%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%A9%D7%96%D7%9E%D7%99%D7%A0%D7%99%D7%9D.%20%D7%AA%D7%95%D7%93%D7%94!" target="_blank" rel="noopener">💬 הודעה בוואטסאפ</a>
+    </div>
+  </section>
+
+  <!-- שלב 2: טופס -->
+  <section id="step2" class="narrow" hidden>
+    <div class="chosen" id="chosen"></div>
+    <div class="change"><button type="button" class="link-btn" id="change-btn">← בחירת מועד אחר</button></div>
+
+    <form class="form" id="reg-form" novalidate>
+      <h2>פרטים להרשמה</h2>
+      <div class="row2">
+        <div class="field">
+          <label for="rf-child">שם הילד/ה</label>
+          <input id="rf-child" type="text" autocomplete="off" placeholder="שם פרטי ומשפחה" required>
+        </div>
+        <div class="field">
+          <label for="rf-age">גיל</label>
+          <select id="rf-age" required>
+            <option value="">בחרו</option>
+            <option>7</option><option>8</option><option>9</option>
+            <option>10</option><option>11</option><option>12</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="rf-parent">שם ההורה</label>
+        <input id="rf-parent" type="text" autocomplete="name" placeholder="שם מלא" required>
+      </div>
+      <div class="field">
+        <label for="rf-phone">טלפון</label>
+        <input id="rf-phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="05X-XXXXXXX" required>
+      </div>
+      <div class="field">
+        <label for="rf-email">מייל (לשליחת אישור)</label>
+        <input id="rf-email" type="email" autocomplete="email" placeholder="name@example.com" required>
+      </div>
+      <button type="submit" class="btn btn-main" id="rf-submit">להרשמה ←</button>
+      <p class="err" id="rf-error" role="alert"></p>
+    </form>
+  </section>
+
+  <!-- שלב 3: תודה + תשלום -->
+  <section id="step3" class="narrow" hidden>
+    <div class="thanks">
+      <div class="big">🎉</div>
+      <h2>נרשמתם!</h2>
+      <p>המקום שלכם יישמר אחרי התשלום:</p>
+      <a class="btn btn-main" href="https://pay.grow.link/MTA1MzQ3~7052fb26330817b393e8baf1dc12bf55-NDA0MDk3Mg" target="_blank" rel="noopener">💳 לתשלום: 297 ₪</a>
+      <small>אחרי התשלום נשלח אליכם אישור 📲</small>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const PORTAL_API = 'https://hakhamim-portal.vercel.app';
+const DAY_NAMES = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+const DAY_LETTERS = ['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'];
+let workshops = [];
+let selectedWorkshop = null;
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function fmtDate(d) {
+  return d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' });
+}
+
+// מחזיר את אובייקטי התאריכים של המפגשים, ממוינים (כמו בדף הראשי).
+function sessionDateObjs(w) {
+  if (w && Array.isArray(w.session_dates) && w.session_dates.length) {
+    return w.session_dates.map(s => new Date(s)).sort((a, b) => a - b);
+  }
+  const start = new Date(w && w.start_date ? w.start_date : w);
+  return Array.from({ length: 5 }, (_, i) => {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i * 7);
+    return d;
+  });
+}
+
+function isWeekly(objs) {
+  return objs.every(d => d.getDay() === objs[0].getDay());
+}
+
+function isConsecutive(objs) {
+  for (let i = 1; i < objs.length; i++) {
+    if (Math.round((objs[i] - objs[i - 1]) / 86400000) !== 1) return false;
+  }
+  return true;
+}
+
+function dayHeading(objs) {
+  if (isWeekly(objs)) return `כל יום ${DAY_NAMES[objs[0].getDay()]}`;
+  const first = DAY_NAMES[objs[0].getDay()], last = DAY_NAMES[objs[objs.length - 1].getDay()];
+  const tag = isConsecutive(objs) ? 'שבוע מרוכז' : 'מועד מיוחד';
+  const label = isConsecutive(objs) ? `${first}–${last}` : `${objs.length} מפגשים`;
+  return `${label} <span class="t-tag">${tag}</span>`;
+}
+
+function ticketHTML(w, i, interactive) {
+  const objs = sessionDateObjs(w);
+  const weekly = isWeekly(objs);
+  const cap =Math.max(0, Math.min(Number(w.max_capacity) || 0, 10));
+  const taken = Math.max(0, Math.min(Number(w.current_count) || 0, cap));
+  const spots = Math.max(0, (Number(w.max_capacity) || 0) - (Number(w.current_count) || 0));
+  const full = spots <= 0;
+  const seats = Array.from({ length: cap }, (_, k) => `<span class="seat${k < taken ? ' taken' : ''}"></span>`).join('');
+  const punches = objs.map((d, k) => `
+    <span class="punch">
+      <span class="hole">${k + 1}</span>
+      <span class="d">${fmtDate(d)}</span>
+      ${weekly ? '' : `<span class="wd">${DAY_LETTERS[d.getDay()]}</span>`}
+    </span>`).join('');
+  const tag = interactive ? 'button' : 'div';
+  const attrs = interactive
+    ? `type="button" data-i="${i}" ${full ? 'disabled' : ''} aria-label="${esc(`${DAY_NAMES[objs[0].getDay()]} בשעה ${w.time}, נותרו ${spots} מקומות`)}"`
+    : '';
+  return `
+    <${tag} class="ticket" ${attrs}>
+      <span class="t-head">
+        <span class="t-day">${dayHeading(objs)}${w.label ? `<span class="t-label">${esc(w.label)}</span>` : ''}</span>
+        <span class="t-time">${esc(w.time)}</span>
+      </span>
+      <span class="t-perf"><i></i><i></i></span>
+      <span class="t-body">
+        <span class="t-caption">תאריכי המפגשים</span>
+        <span class="punches">${punches}</span>
+        <span class="t-foot">
+          <span class="seats" title="מקומות בקבוצה">${seats}
+            <span class="seats-txt${full ? ' full' : ''}">${full ? 'הקבוצה מלאה' : `נותרו ${spots}`}</span>
+          </span>
+          ${interactive && !full ? '<span class="t-cta">לבחירה ←</span>' : ''}
+        </span>
+      </span>
+    </${tag}>`;
+}
+
+async function loadSlots() {
+  const box = $('tickets');
+  try {
+    const res = await fetch(PORTAL_API + '/api/workshops');
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    workshops = Array.isArray(data) ? data : (data ? [data] : []);
+    if (!workshops.length) {
+      box.innerHTML = '<div class="status"><b>אין כרגע מועדים פתוחים</b>שלחו הודעה בוואטסאפ ונעדכן אתכם כשתיפתח קבוצה חדשה.</div>';
+      return;
+    }
+    box.innerHTML = workshops.map((w, i) => ticketHTML(w, i, true)).join('');
+  } catch (e) {
+    box.innerHTML = '<div class="status"><b>המועדים לא נטענו</b>רעננו את העמוד, או שלחו הודעה בוואטסאפ.</div>';
+  }
+}
+
+$('tickets').addEventListener('click', e => {
+  const t = e.target.closest('button.ticket');
+  if (!t || t.disabled) return;
+  const w = workshops[Number(t.dataset.i)];
+  selectedWorkshop = w;
+  t.classList.add('tearing');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  setTimeout(() => {
+    t.classList.remove('tearing');
+    $('chosen').innerHTML = ticketHTML(w, 0, false);
+    $('step1').hidden = true;
+    $('step2').hidden = false;
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    $('rf-child').focus({ preventScroll: true });
+  }, reduce ? 0 : 380);
+});
+
+$('change-btn').addEventListener('click', () => {
+  $('step2').hidden = true;
+  $('step1').hidden = false;
+  selectedWorkshop = null;
+  window.scrollTo({ top: 0 });
+});
+
+$('reg-form').addEventListener('submit', async function (e) {
+  e.preventDefault();
+  const btn = $('rf-submit'), err = $('rf-error');
+  err.style.display = 'none';
+
+  const missing = [...this.querySelectorAll('[required]')].find(el => !el.value.trim());
+  if (missing) {
+    err.textContent = `חסר: ${missing.labels[0].textContent}`;
+    err.style.display = 'block';
+    missing.focus();
+    return;
+  }
+  const email = $('rf-email');
+  if (!email.checkValidity()) {
+    err.textContent = 'כתובת המייל לא תקינה. בדקו שיש בה @ ונקודה.';
+    err.style.display = 'block';
+    email.focus();
+    return;
+  }
+
+  btn.textContent = 'שולח...';
+  btn.disabled = true;
+  try {
+    const res = await fetch(PORTAL_API + '/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        workshopId: selectedWorkshop.id,
+        childName: $('rf-child').value,
+        childAge: parseInt($('rf-age').value),
+        parentName: $('rf-parent').value,
+        parentPhone: $('rf-phone').value,
+        parentEmail: email.value,
+      })
+    });
+    if (!res.ok) throw new Error();
+    if (window.fbq) fbq('track', 'CompleteRegistration', { content_name: 'workshop_registration' });
+    $('step2').hidden = true;
+    $('step3').hidden = false;
+    window.scrollTo({ top: 0 });
+  } catch {
+    err.textContent = 'ההרשמה לא נשלחה. נסו שוב, או כתבו לי בוואטסאפ.';
+    err.style.display = 'block';
+    btn.textContent = 'להרשמה ←';
+    btn.disabled = false;
+  }
+});
+
+loadSlots();
+</script>
+</body>
+</html>
