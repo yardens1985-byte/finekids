@@ -1,6 +1,8 @@
 {
   "rewrites": [
-    { "source": "/4", "destination": "/index.html" }
+    { "source": "/4", "destination": "/index.html" },
+    { "source": "/4/register", "destination": "/register/index.html" },
+    { "source": "/4/register/", "destination": "/register/index.html" }
   ],
   "redirects": [
     { "source": "/4/", "destination": "/4", "permanent": false }

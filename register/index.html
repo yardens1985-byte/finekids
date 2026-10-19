@@ -2,6 +2,11 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>
+// כמו בעמוד הראשי: /register = 5 מפגשים · 297 ₪ (הלינק הישן ללידים הוותיקים); /4/register = 4 מפגשים · 247 ₪.
+document.documentElement.dataset.fmt = /^\/4\//.test(location.pathname) ? '4' : '5';
+</script>
+<style>html[data-fmt="4"] .f5, html[data-fmt="5"] .f4 { display: none !important; }</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -21,9 +26,9 @@ src="https://www.facebook.com/tr?id=28106071105754225&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>הרשמה לסדנה | פיינקידס — חכמים עם כסף</title>
-<meta name="description" content="בחרו מועד לסדנת החינוך הפיננסי של פיינקידס: 4 מפגשים, 30 דקות כל מפגש, עד 4 ילדים בקבוצה.">
+<meta name="description" content="בחרו מועד לסדנת החינוך הפיננסי של פיינקידס: מפגשים של 30 דקות, עד 4 ילדים בקבוצה.">
 <meta property="og:title" content="פיינקידס · בחרו מועד לסדנה">
-<meta property="og:description" content="4 מפגשים · 30 דקות · עד 4 ילדים בקבוצה. בוחרים מועד ונרשמים בדקה.">
+<meta property="og:description" content="מפגשים של 30 דקות · עד 4 ילדים בקבוצה. בוחרים מועד ונרשמים בדקה.">
 <meta property="og:image" content="https://finekids.vercel.app/assets/finkids-logo.jpg">
 <meta property="og:url" content="https://finekids.vercel.app/register">
 <meta property="og:type" content="website">
@@ -195,10 +200,10 @@ a{color:inherit}
     <div class="intro">
       <h1>בחרו <em>מועד</em> לסדנה</h1>
       <ul class="facts">
-        <li><b>4</b> מפגשים שבועיים</li>
+        <li><b><span class="f5">5</span><span class="f4">4</span></b> מפגשים שבועיים</li>
         <li><b>30</b> דק׳ כל מפגש</li>
         <li>עד <b>4</b> ילדים בקבוצה</li>
-        <li class="price"><b>247 ₪</b> לכל הסדנה</li>
+        <li class="price"><b><span class="f5">297</span><span class="f4">247</span> ₪</b> לכל הסדנה</li>
       </ul>
       <p class="trust">🛡️ <b>שיעור ראשון ללא סיכון:</b> רואים אם הילד מתחבר. לא התאים? מקבלים החזר על יתרת המפגשים <small>(בהודעה עד 24 שעות מתום השיעור)</small></p>
     </div>
@@ -279,8 +284,11 @@ function fmtDate(d) {
   return d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' });
 }
 
-// פורמט הסדנה: 4 מפגשים ב-247 ₪. "קבוצת ותיקים" (w.legacy) = 5 מפגשים ב-297 ₪ ללידים שהובטחו להם 5 —
-// לא מוצגת ברשימה, רק בלינק ישיר ?w=<id>. (מקביל ל-lib/onlineFormat.ts בפורטל)
+// פורמט הסדנה: 4 מפגשים ב-247 ₪ (/4/register). "קבוצת ותיקים" (w.legacy) = 5 מפגשים ב-297 ₪ —
+// מוצגת ב-/register, הלינק הישן. (מקביל ל-lib/onlineFormat.ts בפורטל)
+const PAGE_LEGACY = document.documentElement.dataset.fmt !== '4';
+// "על הסדנה" חוזר לעמוד הראשי של אותו פורמט
+if (!PAGE_LEGACY) document.querySelectorAll('a[href="/"]').forEach(a => a.setAttribute('href', '/4'));
 const OFFERS = {
   standard: { sessions: 4, price: 247, payLink: 'https://pay.grow.link/MTA1MzQ3~7358b4ec0353979df8842b03a1f2e619-NDE1NzAwOQ' },
   legacy:   { sessions: 5, price: 297, payLink: 'https://pay.grow.link/MTA1MzQ3~7052fb26330817b393e8baf1dc12bf55-NDA0MDk3Mg' },
@@ -360,7 +368,7 @@ function ticketHTML(w, i, interactive) {
 async function loadSlots() {
   const box = $('tickets');
   try {
-    const res = await fetch(PORTAL_API + '/api/workshops');
+    const res = await fetch(PORTAL_API + '/api/workshops' + (PAGE_LEGACY ? '?format=legacy' : ''));
     if (!res.ok) throw new Error();
     const data = await res.json();
     workshops = Array.isArray(data) ? data : (data ? [data] : []);
