@@ -21,9 +21,9 @@ src="https://www.facebook.com/tr?id=28106071105754225&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>הרשמה לסדנה | פיינקידס — חכמים עם כסף</title>
-<meta name="description" content="בחרו מועד לסדנת החינוך הפיננסי של פיינקידס: 5 מפגשים, 30 דקות כל מפגש, עד 4 ילדים בקבוצה.">
+<meta name="description" content="בחרו מועד לסדנת החינוך הפיננסי של פיינקידס: 4 מפגשים, 30 דקות כל מפגש, עד 4 ילדים בקבוצה.">
 <meta property="og:title" content="פיינקידס · בחרו מועד לסדנה">
-<meta property="og:description" content="5 מפגשים · 30 דקות · עד 4 ילדים בקבוצה. בוחרים מועד ונרשמים בדקה.">
+<meta property="og:description" content="4 מפגשים · 30 דקות · עד 4 ילדים בקבוצה. בוחרים מועד ונרשמים בדקה.">
 <meta property="og:image" content="https://finekids.vercel.app/assets/finkids-logo.jpg">
 <meta property="og:url" content="https://finekids.vercel.app/register">
 <meta property="og:type" content="website">
@@ -195,10 +195,10 @@ a{color:inherit}
     <div class="intro">
       <h1>בחרו <em>מועד</em> לסדנה</h1>
       <ul class="facts">
-        <li><b>5</b> מפגשים שבועיים</li>
+        <li><b>4</b> מפגשים שבועיים</li>
         <li><b>30</b> דק׳ כל מפגש</li>
         <li>עד <b>4</b> ילדים בקבוצה</li>
-        <li class="price"><b>297 ₪</b> לכל הסדנה</li>
+        <li class="price"><b>247 ₪</b> לכל הסדנה</li>
       </ul>
       <p class="trust">🛡️ <b>שיעור ראשון ללא סיכון:</b> רואים אם הילד מתחבר. לא התאים? מקבלים החזר על יתרת המפגשים <small>(בהודעה עד 24 שעות מתום השיעור)</small></p>
     </div>
@@ -258,7 +258,7 @@ a{color:inherit}
       <div class="big">🎉</div>
       <h2>נרשמתם!</h2>
       <p>המקום שלכם יישמר אחרי התשלום:</p>
-      <a class="btn btn-main" href="https://pay.grow.link/MTA1MzQ3~7052fb26330817b393e8baf1dc12bf55-NDA0MDk3Mg" target="_blank" rel="noopener">💳 לתשלום: 297 ₪</a>
+      <a id="pay-link" class="btn btn-main" href="#" target="_blank" rel="noopener">💳 לתשלום: 247 ₪</a>
       <small>אחרי התשלום נשלח אליכם אישור 📲</small>
     </div>
   </section>
@@ -279,13 +279,21 @@ function fmtDate(d) {
   return d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' });
 }
 
+// פורמט הסדנה: 4 מפגשים ב-247 ₪. "קבוצת ותיקים" (w.legacy) = 5 מפגשים ב-297 ₪ ללידים שהובטחו להם 5 —
+// לא מוצגת ברשימה, רק בלינק ישיר ?w=<id>. (מקביל ל-lib/onlineFormat.ts בפורטל)
+const OFFERS = {
+  standard: { sessions: 4, price: 247, payLink: 'https://pay.grow.link/MTA1MzQ3~7358b4ec0353979df8842b03a1f2e619-NDE1NzAwOQ' },
+  legacy:   { sessions: 5, price: 297, payLink: 'https://pay.grow.link/MTA1MzQ3~7052fb26330817b393e8baf1dc12bf55-NDA0MDk3Mg' },
+};
+function offerOf(w) { return w && w.legacy ? OFFERS.legacy : OFFERS.standard; }
+
 // מחזיר את אובייקטי התאריכים של המפגשים, ממוינים (כמו בדף הראשי).
 function sessionDateObjs(w) {
   if (w && Array.isArray(w.session_dates) && w.session_dates.length) {
     return w.session_dates.map(s => new Date(s)).sort((a, b) => a - b);
   }
   const start = new Date(w && w.start_date ? w.start_date : w);
-  return Array.from({ length: 5 }, (_, i) => {
+  return Array.from({ length: offerOf(w).sessions }, (_, i) => {
     const d = new Date(start);
     d.setDate(start.getDate() + i * 7);
     return d;
@@ -427,6 +435,9 @@ $('reg-form').addEventListener('submit', async function (e) {
     });
     if (!res.ok) throw new Error();
     if (window.fbq) fbq('track', 'CompleteRegistration', { content_name: 'workshop_registration' });
+    const offer = offerOf(selectedWorkshop);
+    $('pay-link').href = offer.payLink;
+    $('pay-link').textContent = '💳 לתשלום: ' + offer.price + ' ₪';
     $('step2').hidden = true;
     $('step3').hidden = false;
     window.scrollTo({ top: 0 });

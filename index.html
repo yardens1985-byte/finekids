@@ -2,6 +2,12 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>
+// שתי גרסאות מאותו עמוד: הכתובת הראשית = 5 מפגשים · 297 ₪ (הלינק שנשלח ללידים הוותיקים, מציג קבוצות ותיקים);
+// /4 = 4 מפגשים · 247 ₪ לכל הנרשמים החדשים. טקסט שונה מסומן ב-.f5 / .f4 ומוסתר לפי data-fmt.
+document.documentElement.dataset.fmt = /^\/4\/?$/.test(location.pathname) ? '4' : '5';
+</script>
+<style>html[data-fmt="4"] .f5, html[data-fmt="5"] .f4 { display: none !important; }</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -455,14 +461,15 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
         <a class="btn btn-register btn-lg" href="#register">✏️ הירשמו עכשיו</a>
       </div>
       <div class="price-block reveal">
-        <span class="price-full">450 ₪</span>
-        <span class="price-sale">297 ₪</span>
+        <span class="price-full"><span class="f5">450</span><span class="f4">360</span> ₪</span>
+        <span class="price-sale"><span class="f5">297</span><span class="f4">247</span> ₪</span>
         <span class="price-tag">מחיר היכרות לנרשמים הקרובים</span>
       </div>
       <p class="reveal" style="margin-top:12px;font-size:13px;line-height:1.6;color:#64748b">🛡️ <b style="color:#475569;font-weight:700">ללא סיכון:</b> שיעור ראשון כהתנסות — אפשרות להחזר על יתרת המפגשים אם הילד לא מתחבר</p>
       <p class="reveal" style="margin-top:14px;font-size:14px;color:var(--ink-3)">🎮 מתנהל בעולם גיימינג תלת-מימדי — ממחשב, מהבית</p>
       <div class="hero-stats reveal">
-        <div class="st"><b data-count="5">5</b><span class="lab">מפגשים</span></div>
+        <div class="st f5"><b data-count="5">5</b><span class="lab">מפגשים</span></div>
+        <div class="st f4"><b data-count="4">4</b><span class="lab">מפגשים</span></div>
         <div class="st"><b data-count="30" data-suffix="′">30</b><span class="lab">דקות כל מפגש</span></div>
         <div class="st"><b data-count="4" data-prefix="עד ">4</b><span class="lab">ילדים בקבוצה</span></div>
         <div class="st"><b>7–12</b><span class="lab">גילאים</span></div>
@@ -546,12 +553,12 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
     <div class="sec-head center reveal">
       <span class="eyebrow">איך זה עובד</span>
       <h2>למידה שמרגישה כמו <span class="grad-text">משחק</span></h2>
-      <p class="lead">5 מפגשים אונליין באורך של 30 דקות, בעולם למידה אינטראקטיבי ומשחקי שילדים פשוט לא רוצים לעזוב!</p>
+      <p class="lead"><span class="f5">5</span><span class="f4">4</span> מפגשים אונליין באורך של 30 דקות, בעולם למידה אינטראקטיבי ומשחקי שילדים פשוט לא רוצים לעזוב!</p>
     </div>
     <div class="how-grid">
       <div class="how-step reveal">
         <div class="num">1</div>
-        <h3>5 מפגשים</h3>
+        <h3><span class="f5">5</span><span class="f4">4</span> מפגשים</h3>
         <p>מסע למידה בנוי ומדורג — כל מפגש בונה על הקודם.</p>
       </div>
       <div class="how-step reveal">
@@ -660,7 +667,7 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
       <div class="t-card reveal">
         <div class="quote">"</div>
         <div class="stars">★★★★★</div>
-        <p>בהתחלה הייתי סקפטית — 30 דקות בשבוע זה יעשה הבדל? אחרי 5 המפגשים הבן שלי עומר (10) מסביר לי מה זה ריבית דריבית. אני למדתי ממנו. ירדן מדהים עם ילדים, סבלני וכייפי.</p>
+        <p>בהתחלה הייתי סקפטית — 30 דקות בשבוע זה יעשה הבדל? אחרי המפגשים הבן שלי עומר (10) מסביר לי מה זה ריבית דריבית. אני למדתי ממנו. ירדן מדהים עם ילדים, סבלני וכייפי.</p>
         <div class="who"><div class="av" style="background:#8e44ad">ר</div><div><b>רותי אברהם</b> · <small>תל אביב</small><span>פיינקידס · תוכנית דיגיטלית</span></div></div>
       </div>
     </div>
@@ -691,7 +698,7 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
     <div class="sec-head center">
       <span class="eyebrow">📅 הרשמה לסדנה</span>
       <h2 style="margin-top:14px">בחרו מועד <span class="grad-text">שמתאים לכם</span></h2>
-      <p class="lead">5 מפגשים שבועיים · 30 דקות כל מפגש · עד 4 ילדים בקבוצה</p>
+      <p class="lead"><span class="f5">5</span><span class="f4">4</span> מפגשים שבועיים · 30 דקות כל מפגש · עד 4 ילדים בקבוצה</p>
       <div style="display:inline-block;max-width:640px;margin-top:16px;padding:10px 18px;background:#ecfdf5;border:1px solid #a7f3d0;border-radius:16px;color:#065f46;font-size:14px;font-weight:600;line-height:1.6">🛡️ שיעור ראשון ללא סיכון: רואים אם הילד מתחבר. לא התאים? מקבלים החזר על יתרת המפגשים <span style="font-weight:400;color:#047857">(בהודעה עד 24 שעות מתום השיעור)</span></div>
     </div>
 
@@ -765,8 +772,8 @@ footer small{display:block;margin-top:18px;font-size:13px;color:rgba(255,255,255
       <div style="font-size:4rem;margin-bottom:16px">🎉</div>
       <h3 style="font-size:clamp(22px,3vw,30px);margin-bottom:12px">נרשמתם בהצלחה!</h3>
       <p class="lead" style="margin-bottom:28px">כדי לאשר את מקומכם, אנא השלימו את התשלום:</p>
-      <a href="https://pay.grow.link/MTA1MzQ3~7052fb26330817b393e8baf1dc12bf55-NDA0MDk3Mg" target="_blank" rel="noopener" class="btn btn-register btn-lg" style="width:100%;justify-content:center;font-size:19px;padding:20px">
-        💳 לתשלום — 297 ₪
+      <a id="pay-link" href="#" target="_blank" rel="noopener" class="btn btn-register btn-lg" style="width:100%;justify-content:center;font-size:19px;padding:20px">
+        💳 לתשלום — 247 ₪
       </a>
       <p style="margin-top:16px;font-size:14px;color:var(--ink-3)">לאחר התשלום נשלח אליכם אישור 📲</p>
     </div>
@@ -803,13 +810,22 @@ function fmtDate(d) {
   return d.toLocaleDateString('he-IL', { day: '2-digit', month: '2-digit' });
 }
 
+// פורמט הסדנה: 4 מפגשים ב-247 ₪ (העמוד /4). "קבוצת ותיקים" (w.legacy) = 5 מפגשים ב-297 ₪ —
+// מוצגת בכתובת הראשית, שהיא הלינק שנשלח ללידים הוותיקים. (מקביל ל-lib/onlineFormat.ts בפורטל)
+const PAGE_LEGACY = document.documentElement.dataset.fmt !== '4';
+const OFFERS = {
+  standard: { sessions: 4, price: 247, payLink: 'https://pay.grow.link/MTA1MzQ3~7358b4ec0353979df8842b03a1f2e619-NDE1NzAwOQ' },
+  legacy:   { sessions: 5, price: 297, payLink: 'https://pay.grow.link/MTA1MzQ3~7052fb26330817b393e8baf1dc12bf55-NDA0MDk3Mg' },
+};
+function offerOf(w) { return w && w.legacy ? OFFERS.legacy : OFFERS.standard; }
+
 // מחזיר את אובייקטי התאריכים של המפגשים, ממוינים.
 function sessionDateObjs(w) {
   if (w && Array.isArray(w.session_dates) && w.session_dates.length) {
     return w.session_dates.map(s => new Date(s)).sort((a, b) => a - b);
   }
   const start = new Date(w && w.start_date ? w.start_date : w);
-  return Array.from({ length: 5 }, (_, i) => {
+  return Array.from({ length: offerOf(w).sessions }, (_, i) => {
     const d = new Date(start);
     d.setDate(start.getDate() + i * 7);
     return d;
@@ -846,7 +862,12 @@ function slotDatesBlock(objs) {
 
 async function loadSlots() {
   try {
-    const res = await fetch(PORTAL_API + '/api/workshops');
+    // ?w=<id> — לינק ישיר למועד (גם לקבוצת ותיקים, שלא מופיעה ברשימה הרגילה)
+    const wantedId = new URLSearchParams(location.search).get('w');
+    const q = new URLSearchParams();
+    if (PAGE_LEGACY) q.set('format', 'legacy');
+    if (wantedId) q.set('w', wantedId);
+    const res = await fetch(PORTAL_API + '/api/workshops' + (q.toString() ? '?' + q : ''));
     const data = await res.json();
     const workshops = Array.isArray(data) ? data : [data];
     const container = document.getElementById('slots-container');
@@ -866,7 +887,7 @@ async function loadSlots() {
       const spots = w.max_capacity - w.current_count;
       return `
         <div class="slot-card" onclick="selectSlot(${JSON.stringify(w).replace(/"/g,'&quot;')}, this)">
-          <div class="slot-day">${slotHeader(objs)}${w.label ? `<span class="slot-label">${w.label}</span>` : ''}</div>
+          <div class="slot-day">${slotHeader(objs)}${w.label ? `<span class="slot-label">${w.label}</span>` : ''}${!!w.legacy !== PAGE_LEGACY ? `<span class="slot-label">${offerOf(w).sessions} מפגשים · ${offerOf(w).price} ₪</span>` : ''}</div>
           <div class="slot-time">${w.time}</div>
           ${slotDatesBlock(objs)}
           <div class="slot-spots">🟢 נותרו ${spots} מקומות</div>
@@ -874,7 +895,6 @@ async function loadSlots() {
     }).join('');
 
     // Direct link to a specific slot: ?w=<workshopId> opens its registration form
-    const wantedId = new URLSearchParams(location.search).get('w');
     if (wantedId) {
       const idx = workshops.findIndex(w => String(w.id) === wantedId);
       const reg = document.getElementById('register');
@@ -934,6 +954,11 @@ document.getElementById('reg-form').addEventListener('submit', async function(e)
     });
     if (!res.ok) throw new Error();
     if (window.fbq) fbq('track', 'CompleteRegistration', { content_name: 'workshop_registration' });
+    const offer = offerOf(selectedWorkshop);
+    const pay = document.getElementById('pay-link');
+    pay.href = offer.payLink;
+    pay.dataset.price = offer.price;
+    pay.textContent = '💳 לתשלום — ' + offer.price + ' ₪';
     document.getElementById('reg-step2').style.display = 'none';
     document.getElementById('reg-step3').style.display = 'block';
     document.getElementById('reg-step3').scrollIntoView({ behavior:'smooth' });
@@ -1260,7 +1285,10 @@ document.addEventListener('click', function(e){
   if(href.indexOf('wa.me') !== -1 || href.indexOf('api.whatsapp.com') !== -1){
     fbq('track','Contact',{method:'whatsapp'});
   } else if(href.indexOf('pay.grow.link') !== -1 || href.indexOf('grow.link') !== -1){
-    fbq('track','InitiateCheckout',{content_name:'workshop_payment',value:297,currency:'ILS'});
+    // הסכום לפי המועד שנבחר (247 / 297) — נשמר גם ל-Purchase אחרי החזרה מ-Grow
+    var price = Number(el.dataset.price) || (PAGE_LEGACY ? 297 : 247);
+    try { localStorage.setItem('fk_pay_value', String(price)); } catch(e){}
+    fbq('track','InitiateCheckout',{content_name:'workshop_payment',value:price,currency:'ILS'});
   } else if(href === '#register'){
     fbq('track','ViewContent',{content_name:'registration_cta'});
   }
@@ -1285,7 +1313,9 @@ document.addEventListener('click', function(e){
     if (key) { try { already = localStorage.getItem(key) === '1'; } catch(e){} }
 
     if (!already && window.fbq) {
-      fbq('track','Purchase',{value:297,currency:'ILS',content_name:'workshop_payment'});
+      var value = PAGE_LEGACY ? 297 : 247;
+      try { value = Number(localStorage.getItem('fk_pay_value')) || value; } catch(e){}
+      fbq('track','Purchase',{value:value,currency:'ILS',content_name:'workshop_payment'});
       if (key) { try { localStorage.setItem(key,'1'); } catch(e){} }
     }
 

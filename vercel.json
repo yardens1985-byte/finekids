@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/4", "destination": "/index.html" }
+  ],
+  "redirects": [
+    { "source": "/4/", "destination": "/4", "permanent": false }
+  ]
+}
